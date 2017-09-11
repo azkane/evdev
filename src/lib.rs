@@ -756,11 +756,11 @@ impl Device {
             dev.rel = RelativeAxis::from_bits(bits).expect("evdev: unexpected rel bits! report a bug");
         }
 
-        if dev.ty.contains(ABSOLUTE) {
-            do_ioctl!(eviocgbit(fd, ABSOLUTE.number(), 0x3f, &mut bits64 as *mut u64 as *mut u8));
-            dev.abs = AbsoluteAxis::from_bits(bits64).expect("evdev: unexpected abs bits! report a bug");
-            dev.state.abs_vals = vec![input_absinfo::default(); 0x3f];
-        }
+//        if dev.ty.contains(ABSOLUTE) {
+//            do_ioctl!(eviocgbit(fd, ABSOLUTE.number(), 0x3f, &mut bits64 as *mut u64 as *mut u8));
+//            dev.abs = AbsoluteAxis::from_bits(bits64).expect("evdev: unexpected abs bits! report a bug");
+//            dev.state.abs_vals = vec![input_absinfo::default(); 0x3f];
+//        }
 
         if dev.ty.contains(SWITCH) {
             do_ioctl!(eviocgbit(fd, SWITCH.number(), 0xf, &mut bits as *mut u32 as *mut u8));
